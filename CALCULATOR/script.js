@@ -31,7 +31,6 @@ del.addEventListener('click', function() {
     input.value = input.value.slice(0, -1); 
 });
 
-// Number buttons
 num1.addEventListener('click', function() { input.value += '1'; });
 num2.addEventListener('click', function() { input.value += '2'; });
 num3.addEventListener('click', function() { input.value += '3'; });
@@ -43,7 +42,6 @@ num8.addEventListener('click', function() { input.value += '8'; });
 num9.addEventListener('click', function() { input.value += '9'; });
 num0.addEventListener('click', function() { input.value += '0'; });
 
-// Dot button
 dot.addEventListener('click', function() {
     if (input.value === '' || input.value.startsWith('.')) {
         return;
@@ -53,7 +51,6 @@ dot.addEventListener('click', function() {
     }
 });
 
-// Operator buttons
 add.addEventListener('click', function() { 
     if (input.value && !input.value.endsWith('+')) {
         input.value += '+';  
@@ -80,16 +77,13 @@ per.addEventListener('click', function() {
     }
 });
 
-// Equal button (calculating the result)
 ans.addEventListener('click', function() {
     try {
-        // Replace the operator symbols with JavaScript supported operators
         let expression = input.value;
         expression = expression.replace(/x/g, '*').replace(/÷/g, '/').replace(/%/g, '/100'); 
 
-        // Evaluate the expression
         input.value = eval(expression).toString();
     } catch (e) {
-        input.value = 'Error'; // Show error if the input is invalid
+        input.value = 'Error';
     }
 });
