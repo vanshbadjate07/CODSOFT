@@ -321,7 +321,6 @@ ul li a:hover {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: auto;
   }
   .first_pro{
     width: 100%;
