@@ -1,0 +1,1460 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prestige Motors | Luxury Car Dealership</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      :root {
+        --primary-color: #e60000;
+        --secondary-color: #1a1a1a;
+        --text-color: #ffffff;
+        --text-color-dark: #1a1a1a;
+        --text-color-light: #a0a0a0;
+        --accent-color: #d4af37;
+        --bg-color: #0a0a0a;
+        --bg-color-light: #1e1e1e;
+        --transition: all 0.3s ease;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        --border-radius: 4px;
+        
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.5;
+        font-weight: 400;
+
+        color-scheme: dark;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      button {
+        cursor: pointer;
+        font-family: inherit;
+        border: none;
+        outline: none;
+        transition: var(--transition);
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        z-index: 1000;
+        transition: var(--transition);
+        background: rgba(10, 10, 10, 0.8);
+        backdrop-filter: blur(10px);
+      }
+
+      .navbar.scrolled {
+        padding: 1rem 5%;
+        background: rgba(10, 10, 10, 0.95);
+        box-shadow: var(--shadow);
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--text-color);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .cta-btn {
+        background-color: var(--primary-color);
+        padding: 0.5rem 1.5rem;
+        border-radius: var(--border-radius);
+      }
+
+      .cta-btn:hover {
+        background-color: #ff0000;
+        transform: translateY(-2px);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: var(--text-color);
+        transition: var(--transition);
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
+                    url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        padding: 0 5%;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        animation: fadeIn 1s ease-out;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: var(--text-color-light);
+      }
+
+      .btn-primary {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+      }
+
+      .btn-primary:hover {
+        background-color: #ff0000;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
+      }
+
+      /* Section Styles */
+      section {
+        padding: 6rem 5%;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-header h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      .section-header p {
+        font-size: 1.1rem;
+        color: var(--text-color-light);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* Models Section */
+      .models {
+        background-color: var(--bg-color-light);
+      }
+
+      .car-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .car-card {
+        background-color: var(--secondary-color);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .car-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .car-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .car-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .car-card:hover .car-image img {
+        transform: scale(1.1);
+      }
+
+      .car-details {
+        padding: 1.5rem;
+      }
+
+      .car-details h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .car-details p {
+        color: var(--text-color-light);
+        margin-bottom: 1rem;
+      }
+
+      .car-specs {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+      }
+
+      .spec {
+        text-align: center;
+      }
+
+      .spec span {
+        display: block;
+      }
+
+      .spec-value {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      .spec-label {
+        font-size: 0.8rem;
+        color: var(--text-color-light);
+        text-transform: uppercase;
+      }
+
+      .car-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+      }
+
+      .btn-secondary {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        background-color: transparent;
+        color: var(--text-color);
+        border: 2px solid var(--primary-color);
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Comparison Section */
+      .comparison {
+        background-color: var(--bg-color);
+      }
+
+      .comparison-container {
+        overflow-x: auto;
+      }
+
+      .comparison-table {
+        min-width: 800px;
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .comparison-header {
+        display: flex;
+      }
+
+      .comparison-cell {
+        flex: 1;
+        padding: 1.5rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .comparison-cell img {
+        width: 100%;
+        max-width: 200px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: var(--border-radius);
+        margin: 0 auto 1rem;
+      }
+
+      .comparison-cell h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .comparison-row {
+        display: flex;
+      }
+
+      .comparison-row:nth-child(odd) {
+        background-color: rgba(255, 255, 255, 0.03);
+      }
+
+      .feature {
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      /* Testimonials Section */
+      .testimonials {
+        background-color: var(--bg-color-light);
+      }
+
+      .testimonial-slider {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .testimonial-container {
+        display: flex;
+        overflow: hidden;
+      }
+
+      .testimonial {
+        min-width: 100%;
+        padding: 2rem;
+        background-color: var(--secondary-color);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .testimonial-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-avatar {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 1rem;
+      }
+
+      .testimonial-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .testimonial-author h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .testimonial-author p {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+      }
+
+      .testimonial-content {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        position: relative;
+      }
+
+      .testimonial-content::before {
+        content: '"';
+        font-size: 4rem;
+        color: var(--primary-color);
+        opacity: 0.2;
+        position: absolute;
+        top: -20px;
+        left: -10px;
+      }
+
+      .slider-controls {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 1rem;
+      }
+
+      .slider-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .slider-btn:hover {
+        background-color: var(--primary-color);
+      }
+
+      /* Contact Section */
+      .contact {
+        background-color: var(--bg-color);
+      }
+
+      .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .info-item i {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+      }
+
+      .contact-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .form-group {
+        position: relative;
+      }
+
+      .form-group:nth-child(5) {
+        grid-column: 1 / 3;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--secondary-color);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius);
+        color: var(--text-color);
+        font-family: inherit;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group textarea {
+        height: 150px;
+        resize: none;
+      }
+
+      .form-group label {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        color: var(--text-color-light);
+        pointer-events: none;
+        transition: var(--transition);
+      }
+
+      .form-group:nth-child(5) label {
+        top: 1rem;
+        transform: none;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus,
+      .form-group input:not(:placeholder-shown),
+      .form-group select:not([value=""]),
+      .form-group textarea:not(:placeholder-shown) {
+        border-color: var(--primary-color);
+        outline: none;
+      }
+
+      .form-group input:focus ~ label,
+      .form-group select:focus ~ label,
+      .form-group textarea:focus ~ label,
+      .form-group input:not(:placeholder-shown) ~ label,
+      .form-group select:not([value=""]) ~ label,
+      .form-group textarea:not(:placeholder-shown) ~ label {
+        top: 0;
+        left: 0.8rem;
+        font-size: 0.8rem;
+        padding: 0 0.5rem;
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+      }
+
+      .contact-form .btn-primary {
+        grid-column: 1 / 3;
+        justify-self: center;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--secondary-color);
+        padding: 4rem 5% 1rem;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+      }
+
+      .footer-logo {
+        max-width: 300px;
+      }
+
+      .footer-logo p {
+        margin-top: 1rem;
+        color: var(--text-color-light);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 4rem;
+      }
+
+      .footer-column h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .footer-column h4::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-column ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .footer-column a {
+        color: var(--text-color-light);
+        transition: var(--transition);
+      }
+
+      .footer-column a:hover {
+        color: var(--text-color);
+        padding-left: 5px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .newsletter {
+        display: flex;
+        margin-top: 0.5rem;
+      }
+
+      .newsletter input {
+        flex: 1;
+        padding: 0.8rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
+        color: var(--text-color);
+      }
+
+      .newsletter button {
+        padding: 0 1rem;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-bottom p {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+      }
+
+      .footer-bottom-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .footer-bottom-links a {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1024px) {
+        .hero-content h1 {
+          font-size: 3rem;
+        }
+        
+        .contact-container {
+          grid-template-columns: 1fr;
+        }
+        
+        .footer-content {
+          flex-direction: column;
+          gap: 3rem;
+        }
+        
+        .footer-links {
+          justify-content: space-between;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 1rem 5%;
+        }
+        
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 70%;
+          height: 100vh;
+          background-color: var(--secondary-color);
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          transition: var(--transition);
+          z-index: 999;
+        }
+        
+        .nav-links.active {
+          right: 0;
+        }
+        
+        .hamburger {
+          display: flex;
+          z-index: 1000;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+          opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+        
+        .section-header h2 {
+          font-size: 2rem;
+        }
+        
+        .contact-form {
+          grid-template-columns: 1fr;
+        }
+        
+        .contact-form .btn-primary {
+          grid-column: 1;
+        }
+        
+        .footer-links {
+          flex-direction: column;
+          gap: 2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+        
+        .hero-content p {
+          font-size: 1rem;
+        }
+        
+        .section-header h2 {
+          font-size: 1.8rem;
+        }
+        
+        .section-header p {
+          font-size: 1rem;
+        }
+        
+        .footer-bottom {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="logo">PRESTIGE MOTORS</div>
+        <ul class="nav-links">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#models">Models</a></li>
+          <li><a href="#comparison">Compare</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact" class="cta-btn">Contact Us</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Experience Unparalleled Luxury</h1>
+          <p>Discover our exclusive collection of premium vehicles</p>
+          <a href="#models" class="btn-primary">Explore Models</a>
+        </div>
+      </section>
+
+      <!-- Models Section -->
+      <section id="models" class="models">
+        <div class="section-header">
+          <h2>Our Premium Collection</h2>
+          <p>Discover the perfect blend of performance, luxury, and innovation</p>
+        </div>
+        <div class="car-grid">
+          <!-- Car cards will be dynamically generated here -->
+        </div>
+        <button id="view-more" class="btn-secondary">View More</button>
+      </section>
+
+      <!-- Comparison Section -->
+      <section id="comparison" class="comparison">
+        <div class="section-header">
+          <h2>Compare Models</h2>
+          <p>Find the perfect match for your luxury driving experience</p>
+        </div>
+        <div class="comparison-container">
+          <div class="comparison-table">
+            <div class="comparison-header">
+              <div class="comparison-cell"></div>
+              <div class="comparison-cell">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sport Model">
+                <h3>Sport Series</h3>
+              </div>
+              <div class="comparison-cell">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="GT Model">
+                <h3>GT Series</h3>
+              </div>
+              <div class="comparison-cell">
+                <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Executive Model">
+                <h3>Executive Series</h3>
+              </div>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-cell feature">Engine</div>
+              <div class="comparison-cell">4.0L V8 Twin-Turbo</div>
+              <div class="comparison-cell">5.0L V10 Naturally Aspirated</div>
+              <div class="comparison-cell">6.0L V12 Twin-Turbo</div>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-cell feature">Horsepower</div>
+              <div class="comparison-cell">570 HP</div>
+              <div class="comparison-cell">650 HP</div>
+              <div class="comparison-cell">750 HP</div>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-cell feature">0-60 mph</div>
+              <div class="comparison-cell">3.2 seconds</div>
+              <div class="comparison-cell">2.9 seconds</div>
+              <div class="comparison-cell">2.7 seconds</div>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-cell feature">Top Speed</div>
+              <div class="comparison-cell">205 mph</div>
+              <div class="comparison-cell">215 mph</div>
+              <div class="comparison-cell">225 mph</div>
+            </div>
+            <div class="comparison-row">
+              <div class="comparison-cell feature">Starting Price</div>
+              <div class="comparison-cell">$195,000</div>
+              <div class="comparison-cell">$245,000</div>
+              <div class="comparison-cell">$325,000</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="testimonials">
+        <div class="section-header">
+          <h2>Client Experiences</h2>
+          <p>What our distinguished clients have to say</p>
+        </div>
+        <div class="testimonial-slider">
+          <div class="testimonial-container">
+            <!-- Testimonials will be dynamically generated here -->
+          </div>
+          <div class="slider-controls">
+            <button id="prev-testimonial" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+            <button id="next-testimonial" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact">
+        <div class="section-header">
+          <h2>Get in Touch</h2>
+          <p>Schedule a test drive or inquire about our collection</p>
+        </div>
+        <div class="contact-container">
+          <div class="contact-info">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>123 Luxury Lane, Beverly Hills, CA 90210</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <p>+1 (800) PRESTIGE</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <p>info@prestigemotors.com</p>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <p>Mon-Sat: 9AM - 7PM | Sun: By Appointment</p>
+            </div>
+          </div>
+          <form class="contact-form">
+            <div class="form-group">
+              <input type="text" id="name" required>
+              <label for="name">Full Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" required>
+              <label for="email">Email Address</label>
+            </div>
+            <div class="form-group">
+              <input type="tel" id="phone" required>
+              <label for="phone">Phone Number</label>
+            </div>
+            <div class="form-group">
+              <select id="interest" required>
+                <option value="" disabled selected></option>
+                <option value="test-drive">Schedule Test Drive</option>
+                <option value="inquiry">Vehicle Inquiry</option>
+                <option value="purchase">Purchase Information</option>
+                <option value="other">Other</option>
+              </select>
+              <label for="interest">I'm interested in</label>
+            </div>
+            <div class="form-group">
+              <textarea id="message" required></textarea>
+              <label for="message">Your Message</label>
+            </div>
+            <button type="submit" class="btn-primary">Submit Request</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo">PRESTIGE MOTORS</div>
+            <p>The ultimate luxury car experience</p>
+          </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#models">Models</a></li>
+                <li><a href="#comparison">Compare</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="#">Test Drive</a></li>
+                <li><a href="#">Financing</a></li>
+                <li><a href="#">Customization</a></li>
+                <li><a href="#">Maintenance</a></li>
+                <li><a href="#">Trade-In</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Connect</h4>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <p>Subscribe to our newsletter</p>
+              <div class="newsletter">
+                <input type="email" placeholder="Your email">
+                <button><i class="fas fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Prestige Motors. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Car data
+      const carData = [
+        {
+          id: 1,
+          name: "Phantom GT",
+          category: "Luxury Sedan",
+          price: "$325,000",
+          image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          specs: {
+            engine: "6.0L V12",
+            power: "563 HP",
+            acceleration: "4.3s"
+          }
+        },
+        {
+          id: 2,
+          name: "Vortex S",
+          category: "Sports Coupe",
+          price: "$275,000",
+          image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          specs: {
+            engine: "4.0L V8",
+            power: "650 HP",
+            acceleration: "3.0s"
+          }
+        },
+        {
+          id: 3,
+          name: "Celestial EV",
+          category: "Electric Luxury",
+          price: "$195,000",
+          image: "https://images.unsplash.com/photo-1554744512-d6c603f27c54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          specs: {
+            engine: "Dual Motor",
+            power: "750 HP",
+            acceleration: "2.8s"
+          }
+        },
+        {
+          id: 4,
+          name: "Apex RS",
+          category: "Hypercar",
+          price: "$1,200,000",
+          image: "https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          specs: {
+            engine: "5.2L V10",
+            power: "850 HP",
+            acceleration: "2.5s"
+          }
+        },
+        {
+          id: 5,
+          name: "Sovereign SUV",
+          category: "Luxury SUV",
+          price: "$225,000",
+          image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          specs: {
+            engine: "4.4L V8",
+            power: "575 HP",
+            acceleration: "3.8s"
+          }
+        },
+        {
+          id: 6,
+          name: "Mirage Roadster",
+          category: "Convertible",
+          price: "$310,000",
+          image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          specs: {
+            engine: "4.0L V8",
+            power: "580 HP",
+            acceleration: "3.2s"
+          }
+        },
+        {
+          id: 7,
+          name: "Zenith GT",
+          category: "Grand Tourer",
+          price: "$285,000",
+          image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          specs: {
+            engine: "5.0L V12",
+            power: "715 HP",
+            acceleration: "3.1s"
+          }
+        },
+        {
+          id: 8,
+          name: "Eclipse EV Sport",
+          category: "Electric Sports",
+          price: "$240,000",
+          image: "https://images.unsplash.com/photo-1610647752706-3bb12232b3e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          specs: {
+            engine: "Tri Motor",
+            power: "820 HP",
+            acceleration: "2.3s"
+          }
+        }
+      ];
+
+      // Testimonial data
+      const testimonialData = [
+        {
+          id: 1,
+          name: "Alexander Reynolds",
+          position: "CEO, Reynolds Enterprises",
+          avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+          content: "Prestige Motors provided an unparalleled buying experience. Their attention to detail and personalized service exceeded all my expectations. My Phantom GT is a masterpiece of engineering and luxury."
+        },
+        {
+          id: 2,
+          name: "Victoria Chen",
+          position: "Fashion Designer",
+          avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+          content: "The team at Prestige Motors understood exactly what I was looking for. The Vortex S not only matches my lifestyle perfectly but has become an extension of my personal brand. Exceptional service from start to finish."
+        },
+        {
+          id: 3,
+          name: "Jonathan Miller",
+          position: "Tech Entrepreneur",
+          avatar: "https://randomuser.me/api/portraits/men/22.jpg",
+          content: "As someone who values innovation, the Celestial EV from Prestige Motors was the perfect choice. The cutting-edge technology combined with luxurious comfort makes every drive an experience to remember."
+        }
+      ];
+
+      // DOM Elements
+      const carGrid = document.querySelector('.car-grid');
+      const viewMoreBtn = document.getElementById('view-more');
+      const testimonialContainer = document.querySelector('.testimonial-container');
+      const prevTestimonialBtn = document.getElementById('prev-testimonial');
+      const nextTestimonialBtn = document.getElementById('next-testimonial');
+      const navbar = document.querySelector('.navbar');
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', () => {
+        // Load initial cars (first 4)
+        loadCars(0, 4);
+        
+        // Load testimonials
+        loadTestimonials();
+        
+        // Initialize form
+        initForm();
+        
+        // Initialize navbar
+        initNavbar();
+      });
+
+      // Load cars function
+      function loadCars(start, end) {
+        const carsToShow = carData.slice(start, end);
+        
+        carsToShow.forEach(car => {
+          const carCard = document.createElement('div');
+          carCard.classList.add('car-card');
+          carCard.setAttribute('data-aos', 'fade-up');
+          
+          carCard.innerHTML = `
+            <div class="car-image">
+              <img src="${car.image}" alt="${car.name}">
+            </div>
+            <div class="car-details">
+              <h3>${car.name}</h3>
+              <p>${car.category}</p>
+              <div class="car-specs">
+                <div class="spec">
+                  <span class="spec-value">${car.specs.engine}</span>
+                  <span class="spec-label">Engine</span>
+                </div>
+                <div class="spec">
+                  <span class="spec-value">${car.specs.power}</span>
+                  <span class="spec-label">Power</span>
+                </div>
+                <div class="spec">
+                  <span class="spec-value">${car.specs.acceleration}</span>
+                  <span class="spec-label">0-60 mph</span>
+                </div>
+              </div>
+              <div class="car-price">${car.price}</div>
+              <button class="btn-secondary car-details-btn">View Details</button>
+            </div>
+          `;
+          
+          carGrid.appendChild(carCard);
+        });
+        
+        // Add event listeners to car detail buttons
+        document.querySelectorAll('.car-details-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            alert('Car details functionality would be implemented here.');
+          });
+        });
+      }
+
+      // View More button functionality
+      viewMoreBtn.addEventListener('click', () => {
+        // If all cars are already shown
+        if (carGrid.children.length >= carData.length) {
+          // Reset to show only first 4
+          carGrid.innerHTML = '';
+          loadCars(0, 4);
+          viewMoreBtn.textContent = 'View More';
+        } else {
+          // Show all cars
+          carGrid.innerHTML = '';
+          loadCars(0, carData.length);
+          viewMoreBtn.textContent = 'View Less';
+        }
+      });
+
+      // Load testimonials
+      function loadTestimonials() {
+        testimonialData.forEach(testimonial => {
+          const testimonialElement = document.createElement('div');
+          testimonialElement.classList.add('testimonial');
+          
+          testimonialElement.innerHTML = `
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">
+                <img src="${testimonial.avatar}" alt="${testimonial.name}">
+              </div>
+              <div class="testimonial-author">
+                <h4>${testimonial.name}</h4>
+                <p>${testimonial.position}</p>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p>${testimonial.content}</p>
+            </div>
+          `;
+          
+          testimonialContainer.appendChild(testimonialElement);
+        });
+        
+        // Initialize testimonial slider
+        initTestimonialSlider();
+      }
+
+      // Testimonial slider
+      let currentTestimonial = 0;
+
+      function initTestimonialSlider() {
+        updateTestimonialSlider();
+        
+        prevTestimonialBtn.addEventListener('click', () => {
+          currentTestimonial = (currentTestimonial - 1 + testimonialData.length) % testimonialData.length;
+          updateTestimonialSlider();
+        });
+        
+        nextTestimonialBtn.addEventListener('click', () => {
+          currentTestimonial = (currentTestimonial + 1) % testimonialData.length;
+          updateTestimonialSlider();
+        });
+        
+        // Auto slide every 5 seconds
+        setInterval(() => {
+          currentTestimonial = (currentTestimonial + 1) % testimonialData.length;
+          updateTestimonialSlider();
+        }, 5000);
+      }
+
+      function updateTestimonialSlider() {
+        testimonialContainer.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+      }
+
+      // Initialize form
+      function initForm() {
+        const contactForm = document.querySelector('.contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          // Get form values
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const phone = document.getElementById('phone').value;
+          const interest = document.getElementById('interest').value;
+          const message = document.getElementById('message').value;
+          
+          // In a real application, you would send this data to a server
+          console.log({ name, email, phone, interest, message });
+          
+          // Show success message
+          alert('Thank you for your inquiry! Our team will contact you shortly.');
+          
+          // Reset form
+          contactForm.reset();
+        });
+        
+        // Add floating label effect
+        const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+        
+        formInputs.forEach(input => {
+          // Set placeholder to empty string to work with the floating label
+          input.setAttribute('placeholder', '');
+          
+          // For select elements, add a change event listener
+          if (input.tagName === 'SELECT') {
+            input.addEventListener('change', () => {
+              if (input.value !== '') {
+                input.classList.add('has-value');
+              } else {
+                input.classList.remove('has-value');
+              }
+            });
+          }
+        });
+      }
+
+      // Initialize navbar
+      function initNavbar() {
+        // Scroll event for navbar
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+        
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+          link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+             navLinks.classList.remove('active');
+          });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80, // Offset for navbar height
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+      }
+
+      // Add animation on scroll
+      window.addEventListener('scroll', () => {
+        const elements = document.querySelectorAll('.car-card, .section-header, .comparison-table, .testimonial-slider, .contact-container');
+        
+        elements.forEach(element => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (elementPosition < windowHeight - 100) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      });
+
+      // Initialize elements with animation
+      document.querySelectorAll('.car-card, .section-header, .comparison-table, .testimonial-slider, .contact-container').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      });
+    </script>
+  </body>
+</html>
